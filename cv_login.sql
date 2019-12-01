@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Ago-2019 às 19:44
+-- Tempo de geração: 01-Dez-2019 às 09:10
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.8
 
@@ -21,6 +21,32 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `cv_login`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `gastos`
+--
+
+CREATE TABLE `gastos` (
+  `id` int(10) NOT NULL,
+  `nome` varchar(300) NOT NULL,
+  `valor` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `receita`
+--
+
+CREATE TABLE `receita` (
+  `id_receita` int(10) NOT NULL,
+  `nome_rec` varchar(35) NOT NULL,
+  `valor_receita` int(100) NOT NULL,
+  `gastos_receita` int(11) DEFAULT NULL,
+  `data_receita` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -43,11 +69,27 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`usuario_id`, `usuario`, `senha`, `nome`, `email`) VALUES
 (6, 'felipesimas', '123', 'felipe', 'irmaosimas@gmail.com'),
 (8, 'wesleynegreti', '123', 'Wesley', 'wesley@gmail.com'),
-(9, 'lucas', '321', 'Lucas', 'lucassimas@gmail.com');
+(9, 'lucas', '321', 'Lucas', 'lucassimas@gmail.com'),
+(10, '', '', '', 'irmaosimas@gmail.com'),
+(11, 'felipesimasss', '123', 'Felipe Batista Simas', 'felipebsimas@gmail.com'),
+(12, 'felipebatistasimas', '34297423', 'Felipe Batista Simas', 'batistasimasfelipe@gmail.com');
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `gastos`
+--
+ALTER TABLE `gastos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `receita`
+--
+ALTER TABLE `receita`
+  ADD PRIMARY KEY (`id_receita`),
+  ADD KEY `gastos_receita` (`gastos_receita`);
 
 --
 -- Índices para tabela `usuario`
@@ -60,10 +102,32 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de tabela `gastos`
+--
+ALTER TABLE `gastos`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT de tabela `receita`
+--
+ALTER TABLE `receita`
+  MODIFY `id_receita` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `receita`
+--
+ALTER TABLE `receita`
+  ADD CONSTRAINT `receita_ibfk_1` FOREIGN KEY (`gastos_receita`) REFERENCES `gastos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
