@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Nov-2019 às 03:41
+-- Tempo de geração: 02-Dez-2019 às 02:30
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.8
 
@@ -31,8 +31,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `gastos` (
   `id` int(10) NOT NULL,
   `nome` varchar(300) NOT NULL,
-  `valor` int(100) NOT NULL
+  `valor` int(100) NOT NULL,
+  `data_gastos` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `gastos`
+--
+
+INSERT INTO `gastos` (`id`, `nome`, `valor`, `data_gastos`) VALUES
+(46, 'Luz', 300, '2019-12-01');
 
 -- --------------------------------------------------------
 
@@ -53,7 +61,7 @@ CREATE TABLE `receita` (
 --
 
 INSERT INTO `receita` (`id_receita`, `nome_rec`, `valor_receita`, `gastos_receita`, `data_receita`) VALUES
-(3, 'Salario', 4000, NULL, '2019-11-24');
+(12, 'Salario', 2000, NULL, '2019-12-10');
 
 -- --------------------------------------------------------
 
@@ -79,7 +87,8 @@ INSERT INTO `usuario` (`usuario_id`, `usuario`, `senha`, `nome`, `email`) VALUES
 (9, 'lucas', '321', 'Lucas', 'lucassimas@gmail.com'),
 (10, '', '', '', 'irmaosimas@gmail.com'),
 (11, 'felipesimasss', '123', 'Felipe Batista Simas', 'felipebsimas@gmail.com'),
-(12, 'felipebatistasimas', '34297423', 'Felipe Batista Simas', 'batistasimasfelipe@gmail.com');
+(12, 'felipebatistasimas', '34297423', 'Felipe Batista Simas', 'batistasimasfelipe@gmail.com'),
+(13, 'erisson', '123', 'Erisson campos', 'ersion@gmaill.com');
 
 --
 -- Índices para tabelas despejadas
@@ -112,19 +121,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `gastos`
 --
 ALTER TABLE `gastos`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de tabela `receita`
 --
 ALTER TABLE `receita`
-  MODIFY `id_receita` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_receita` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restrições para despejos de tabelas
